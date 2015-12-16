@@ -33,8 +33,6 @@ all: pscore
 
 ###############################################################################
 
-#demsort: Makefile make.settings.local demsort.o env.o ${STXXL_PATH}/lib/libstxxl.a
-#	${CXX} demsort.o env.o -o $@ ${STXXL_LINKER_OPTIONS}
 ONAMES_PSCORE = 			fastscore.assoc \
 					balanced_load	\
 					processdir      \
