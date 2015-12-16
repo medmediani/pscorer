@@ -1,0 +1,11 @@
+
+CXX = /project/mt/user/mmediani/tools/mpi/openmpi/bin/mpiCC -Wno-deprecated -fpermissive
+
+STXXL_PATH=/project/mt/user/mmediani/tools/stxxl_trunk
+
+OPTIMIZATION_DEBUG = -O3 -g
+#-O0 -g
+
+OPTIONS			 = -I/project/mt/user/mmediani/tools/DEMSort/demlib/include
+#OPTIONS = -DSMALL_ALLTOALLV
+#-DNDEBUG
