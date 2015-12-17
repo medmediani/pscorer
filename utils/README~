@@ -1,0 +1,38 @@
+This directory contains some utilities to deal with an issue caused by openmpi (OMPI) and Slurm.
+
+Programs using message passing for inter-process communication can be built using mpicc/mpiCC and then submitted to SLURM queue in a straightforward manner using salloc/sbatch. In addition, in recent OMPI versions jobs can be directly started with srun (the flag –resv-ports should be specified though). See https://computing.llnl.gov/linux/slurm/mpi_guide.html#open_mpi for more information.
+
+However, OMPI sadly does not support core level allocation (“yet”)*. When a multithreaded MPI application is to be executed and therefore the option –cpus-per-task is specified, the application is aborted and the following error will be produced "All nodes which are allocated for this job are already filled". This problem can be partially avoided by allocating sockets instead of cores. In case this doesn't help, we provide a workaround in this directory:
+- An allocator script, which allocates the necessary resources.
+- A wrapper, which calls the allocator first, then as soon as the resources are allocated, it calls mpirun to execute the program using the allocated resources. Note however, that there will be no Slurm control over the MPI program. We save the job ID into a file which will be checked if we call mpicancel to cancel the job.
+
+The wrapper is called by providing two arguments:
+- Quoted Slurm options. e.g. "-c 4 -N 4 --mem 20000"
+- Quoted MPI command. e.g. "pscorer -e extract.0-0 -p -w /tmp"
+
+The wrapper will start the job and exit. If it is needed to hang until the job is done, -w --wait-until-done should be used.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+__________________________
+* This was actually true couple of years ago. I am not sure if it still holds.
