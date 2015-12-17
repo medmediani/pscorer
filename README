@@ -18,6 +18,7 @@ This software depends on the following libraries:
 
     - nlopt: non linear optimization: http://ab-initio.mit.edu/wiki/index.php/NLopt
 
+We use AnyOption command line parser (https://github.com/hackorama/AnyOption). The code was downloaded and included without major modifications (you don't have to do anything for this to work. I just added this comment to acknowledge it usage)
 
 COMPILING
 =========
