@@ -86,6 +86,18 @@ std::ostream & operator << (std::ostream & o, const pair_t& obj)
 }
 
 
+std::ostream & operator << (std::ostream & o, const LexMap & lmap)
+{
+    char tmp_key[MAX_STR]={'\x0'};
+    cerr<<"Writing"<<endl;
+    for(auto const & p:lmap){
+        strcpy(tmp_key,p.first.c_str());
+        break_pair(tmp_key);
+        o<<first_part(tmp_key)<<" "<<last_part(tmp_key)<<" "<<p.second<<endl;
+    }
+    return o;
+}
+
 
 
 void create_phrase_table(File lex_file,File revlex_file,File extract_file,
@@ -118,6 +130,11 @@ void create_phrase_table(File lex_file,File revlex_file,File extract_file,
         {
             create_lex_map(revlex_file,revlex);
         }
+    }
+    if(rank==0){
+        cout<<*lex;
+        MPI::Finalize();
+        exit(0);
     }
     timer.stop();
     ROOT_MSG cout<<"Done loading!\n";

@@ -1,0 +1,38 @@
+DESCRIPTION
+===========
+
+pscorer is a C++ implementation of the phrase scoring in phrase-based systems.
+This is a hybrid parallel version. It uses multiple cores on multiple machines.
+It was developed and tested in a Linux environment, with GNU g++.
+
+DEPENDENCIES
+============
+
+This software depends on the following libraries:
+
+    - STXXL: 
+        Download and installation instructions can be found at: http://stxxl.sourceforge.net/
+        Please build it in the parallel mode (e.g. make library_g++_pmode)
+
+    - DEMsort: Distributed sort which uses STXXL. Available at: http://algo2.iti.kit.edu/documents/DEM-sort-lib.tar.gz
+
+    - nlopt: non linear optimization: http://ab-initio.mit.edu/wiki/index.php/NLopt
+
+We use AnyOption command line parser (https://github.com/hackorama/AnyOption). The code was downloaded and included without major modifications.
+
+COMPILING
+=========
+
+- Edit the file make.settings.local, which will tell the compiler where the STXXL is located. It also indicates the mpiCC command.
+
+The maximum value of key strings is 250 (this worked very well for our fr-en systems), 
+it can be set to any other value. However, the larger the slower and the more disk space needed.
+This can be manually changed in the file scorer_types.h (Many other constants can be modified here, such as the number of Kneser-Ney constants to be considered (3 by default)).
+
+Proceed by issuing make command (assuming that this corresponds to GNU make).
+
+
+
+
+
+I will edit this file later!
