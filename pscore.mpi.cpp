@@ -131,11 +131,11 @@ void create_phrase_table(File lex_file,File revlex_file,File extract_file,
             create_lex_map(revlex_file,revlex);
         }
     }
-    if(rank==0){
-        cout<<*lex;
-        MPI::Finalize();
-        exit(0);
-    }
+//     if(rank==0){
+//         cout<<*lex;
+//         MPI::Finalize();
+//         exit(0);
+//     }
     timer.stop();
     ROOT_MSG cout<<"Done loading!\n";
     string time_str=Crono::formatted_min_max_span(timer);
